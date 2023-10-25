@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+const fs = require('fs')
+
 const args = process.argv
 const command = args[2]
 
@@ -13,6 +15,12 @@ function main() {
 		case '-v':
 			showVersion()
 			break
+		
+		case '--prueba':
+		case '-p':
+			getTasks()
+			break
+
 
 		// AQUÍ TU CÓDIGO PARA PROCESAR OTROS COMANDOS
 
@@ -41,7 +49,14 @@ function showVersion() {
 }
 
 function getTasks() {
-	// AQUI TU CÓDIGO
+	try {
+		const data = fs.readFileSync('./data.json', 'utf8')
+		console.log(data)
+	} catch (err) {
+		console.log('Se ha producido un error al leer')
+	}
+	
+	console.log('SIGUE')
 }
 
 function getTaskById(id) {
